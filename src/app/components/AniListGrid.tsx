@@ -8,7 +8,7 @@ const endpoint = "https://graphql.anilist.co";
 const GRID_QUERY = gql`
   query (
     $search: String
-    $genre: String
+    $genres: [String]
     $season: MediaSeason
     $seasonYear: Int
     $format: MediaFormat
@@ -18,7 +18,7 @@ const GRID_QUERY = gql`
         search: $search
         type: ANIME
         sort: TRENDING_DESC
-        genre: $genre
+        genre_in: $genres
         season: $season
         seasonYear: $seasonYear
         format: $format
@@ -50,8 +50,8 @@ export default function AnimeGrid({ filters }: { filters: Filters }) {
     setLoading(true);
     request<{ Page: { media: Anime[] } }>(endpoint, GRID_QUERY, {
       search: filters.search || undefined,
-      genre: filters.genre !== "Any" ? filters.genre : undefined,
-      season: filters.season !== "Any" ? (filters.season as any) : undefined,
+      genres: filters.genres.length > 0 ? filters.genres : undefined,
+      season: filters.season !== "Any" ? filters.season : undefined,
       seasonYear: filters.year !== "Any" ? +filters.year : undefined,
       format: filters.format !== "Any" ? (filters.format as any) : undefined,
     }).then((data) => {

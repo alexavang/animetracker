@@ -7,7 +7,11 @@ import AnimeGrid from "../../components/AniListGrid";
 
 export default function SearchAnimePage() {
   const [filters, setFilters] = useState<Filters>({
-    search: "", genre: "Any", year: "Any", season: "Any", format: "Any",
+    search: "",
+    genres: [],
+    year: "Any",
+    season: "Any",
+    format: "Any",
   });
 
   return (

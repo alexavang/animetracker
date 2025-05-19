@@ -1,10 +1,10 @@
 "use client";
-
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
+import MultiSelectDropdown from "./MultiSelectDropdown";
 
 export type Filters = {
   search: string;
-  genre: string;
+  genres: string[];
   year: string;
   season: string;
   format: string;
@@ -54,7 +54,7 @@ export default function FiltersBar({
 }) {
   const [f, setF] = useState<Filters>({
     search: "",
-    genre: GENRES[0],
+    genres: [],
     year: YEARS[0],
     season: SEASONS[0],
     format: FORMATS[0],
@@ -70,84 +70,76 @@ export default function FiltersBar({
 
   return (
     <div className="flex flex-wrap gap-4 mb-6">
-      {/* Search text */}
-      <input
-        type="text"
-        placeholder="Search"
-        className="bg-[#152238] placeholder-white/50 text-white px-3 py-2 rounded-md flex-1 min-w-[200px]"
-        value={f.search}
-        onChange={(e) => update("search", e.target.value)}
-      />
+      {/* Search */}
+      <div className="flex flex-col">
+        <span className="mb-1 text-sm text-white/60">Search</span>
+        <input
+          type="text"
+          placeholder=""
+          className="bg-[#152238] placeholder-white/50 text-white px-3 py-2 rounded-md flex-1 min-w-[200px]"
+          value={f.search}
+          onChange={(e) => update("search", e.target.value)}
+        />
+      </div>
 
       {/* Genre */}
-      <select
-        className={selectClass}
-        value={f.genre}
-        onChange={(e) => update("genre", e.target.value)}
-      >
-        {GENRES.map((g) => (
-          <option key={g} value={g}>
-            {g}
-          </option>
-        ))}
-      </select>
+      <div className="flex flex-col">
+        <span className="mb-1 text-sm text-white/60">Genres</span>
+        <MultiSelectDropdown
+          placeholder="Any"
+          options={GENRES.filter((g) => g !== "Any")}
+          selected={f.genres}
+          onChange={(genres) => update("genres", genres)}
+        />
+      </div>
 
       {/* Year */}
-      <select
-        className={selectClass}
-        value={f.year}
-        onChange={(e) => update("year", e.target.value)}
-      >
-        {YEARS.map((y) => (
-          <option key={y} value={y}>
-            {y}
-          </option>
-        ))}
-      </select>
+      <div className="flex flex-col">
+        <span className="mb-1 text-sm text-white/60">Year</span>
+        <select
+          className={selectClass}
+          value={f.year}
+          onChange={(e) => update("year", e.target.value)}
+        >
+          {YEARS.map((y) => (
+            <option key={y} value={y}>
+              {y}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {/* Season */}
-      <select
-        className={selectClass}
-        value={f.season}
-        onChange={(e) => update("season", e.target.value)}
-      >
-        {SEASONS.map((s) => (
-          <option key={s} value={s}>
-            {s}
-          </option>
-        ))}
-      </select>
+      <div className="flex flex-col">
+        <span className="mb-1 text-sm text-white/60">Season</span>
+        <select
+          className={selectClass}
+          value={f.season}
+          onChange={(e) => update("season", e.target.value)}
+        >
+          {SEASONS.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {/* Format */}
-      <select
-        className={selectClass}
-        value={f.format}
-        onChange={(e) => update("format", e.target.value)}
-      >
-        {FORMATS.map((fmt) => (
-          <option key={fmt} value={fmt}>
-            {fmt}
-          </option>
-        ))}
-      </select>
-
-      {/* Filter icon (just illustrative) */}
-      <button className="bg-[#152238] text-white p-2 rounded-md">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      <div className="flex flex-col">
+        <span className="mb-1 text-sm text-white/60">Format</span>
+        <select
+          className={selectClass}
+          value={f.format}
+          onChange={(e) => update("format", e.target.value)}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 4a1 1 0 011-1h16a1 1 0 …"
-          />
-        </svg>
-      </button>
+          {FORMATS.map((fmt) => (
+            <option key={fmt} value={fmt}>
+              {fmt}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
