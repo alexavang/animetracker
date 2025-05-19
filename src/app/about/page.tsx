@@ -1,12 +1,10 @@
-import AnimeCard from "../components/AnimeCard";
-import { animeList } from "../data/anime";   
+import AniListFetcher from "../components/AniListFetcher";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <section className="flex flex-wrap gap-6 justify-center p-4">
-      {animeList.map((anime) => (
-        <AnimeCard key={anime.id} anime={anime} />
-      ))}
-    </section>
+    <main>
+      <h1>Trending Anime</h1>
+      <AniListFetcher />
+    </main>
   );
 }

@@ -12,7 +12,7 @@ export default function RootLayout({
         <header className="border-b px-4 py-3">
           <nav className="flex gap-4">
             <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
+            <Link href="/about">Search</Link>
           </nav>
         </header>
 
