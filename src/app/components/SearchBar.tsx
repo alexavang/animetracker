@@ -1,26 +1,37 @@
 "use client";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 export default function SearchBar() {
   const router = useRouter();
-  const [q, setQ] = useState("");
+  const params = useSearchParams();
+  const searchTermFromUrl = params.get("anime") || "";
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!q.trim()) return;
-    router.push(`/search?query=${encodeURIComponent(q.trim())}`);
-  }
+  const [q, setQ] = useState(searchTermFromUrl);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (q.trim()) {
+        if (q.trim() !== searchTermFromUrl) {
+          router.push(`/search?anime=${encodeURIComponent(q.trim())}`);
+        }
+      } else {
+        if (window.location.pathname !== "/search/anime") {
+          router.push("/search/anime");
+        }
+      }
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [q, router, searchTermFromUrl]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <input
-        className="border rounded px-3 py-1 w-64"
-        placeholder="Search anime or manga"
-        value={q}
-        onChange={(e) => setQ(e.target.value)}
-      />
-      <button className="bg-blue-600 text-white px-3 rounded">Search</button>
-    </form>
+    <input
+      className="border rounded px-3 py-1 w-64"
+      placeholder="Search anime or manga"
+      value={q}
+      onChange={(e) => setQ(e.target.value)}
+      autoFocus
+    />
   );
 }
