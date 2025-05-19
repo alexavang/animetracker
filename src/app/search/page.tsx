@@ -40,20 +40,22 @@ export default function SearchPage() {
     if (!term) return;
     (async () => {
       setLoading(true);
-      const data = await request<AniResponse>(endpoint, SEARCH_QUERY, { search: term });
+      const data = await request<AniResponse>(endpoint, SEARCH_QUERY, {
+        search: term,
+      });
       setResults(data.Page.media);
-      setLoading(false);
     })();
   }, [term]);
-
-  if (!term) return <p className="p-4">Type something in the search bar 😊</p>;
-  if (loading) return <p className="p-4">Searching …</p>;
 
   return (
     <main className="flex flex-wrap gap-6 p-4">
       {results.map((a) => (
         <div key={a.id} className="w-40">
-          <img src={a.coverImage.large} alt={a.title.romaji} className="rounded" />
+          <img
+            src={a.coverImage.large}
+            alt={a.title.romaji}
+            className="rounded"
+          />
           <p className="text-sm mt-1">{a.title.english || a.title.romaji}</p>
         </div>
       ))}

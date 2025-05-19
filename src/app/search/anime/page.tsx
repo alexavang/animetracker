@@ -1,4 +1,4 @@
-import AniListFetcher from "../components/AniListFetcher";
+import AniListFetcher from "../../components/AniListFetcher";
 
 export default function HomePage() {
   return (
