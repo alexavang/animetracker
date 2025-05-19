@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
+import Link from "next/link";
 
 const endpoint = "https://graphql.anilist.co";
 
@@ -67,22 +68,32 @@ export default function AniListFetcher() {
   if (error) return <p>{error}</p>;
 
   return (
-    <section>
-      <h2 className="text-lg font-semibold mb-4">Trending Now</h2>
-  
-      {loading && <p>Loading…</p>}
+    <section className="max-w-7xl mx-auto">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold hover:text-blue-400 transition-colors cursor-pointer">
+          Trending Now
+        </h2>
+
+        <Link
+          href="/browse/trending"
+          className="text-sm text-white/70 hover:text-blue-400 transition-colors"
+        >
+          View All
+        </Link>
+      </div>
+
       {error && <p>{error}</p>}
-  
+
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {animeList.map((a) => (
           <article
             key={a.id}
-            className="group hover:-translate-y-1 transition-transform"
+            className="group transition-transform hover:-translate-y-1"
           >
             <img
               src={a.coverImage.large}
               alt={a.title.romaji}
-              className="w-full h-64 object-cover rounded-md shadow-lg"
+              className="w-full h-64 object-cover rounded-lg shadow-md"
             />
             <h3 className="mt-2 text-sm leading-tight group-hover:text-blue-400">
               {a.title.english || a.title.romaji}

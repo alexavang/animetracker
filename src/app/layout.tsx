@@ -5,7 +5,7 @@ import SearchBar from "./components/SearchBar";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-[#0f1a2c] text-white font-sans">
         <header className="bg-dark border-b border-white/10">
           <nav className="mx-auto max-w-7xl flex items-center gap-8 px-6 h-14">
             {/* TODO: Add logo component */}
