@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./globals.css";
+import SearchBar from "./components/SearchBar";
 
 export default function RootLayout({
   children,
@@ -10,9 +11,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <header className="border-b px-4 py-3">
-          <nav className="flex gap-4">
+          <nav className="flex items-center gap-4">
             <Link href="/">Home</Link>
-            <Link href="/about">Search</Link>
+            <Link href="/about">About</Link>
+            <SearchBar />
           </nav>
         </header>
 
