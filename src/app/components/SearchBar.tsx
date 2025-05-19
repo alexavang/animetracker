@@ -27,7 +27,7 @@ export default function SearchBar() {
 
   return (
     <input
-      className="border rounded px-3 py-1 w-64"
+      className="bg-card placeholder-white/60 text-white px-3 py-2 rounded-md w-64 focus:outline-none focus:ring focus:ring-blue-500/50"
       placeholder="Search anime or manga"
       value={q}
       onChange={(e) => setQ(e.target.value)}

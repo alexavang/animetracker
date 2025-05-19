@@ -67,19 +67,29 @@ export default function AniListFetcher() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-      {animeList.map((anime) => (
-        <div key={anime.id} style={{ width: 200, textAlign: "center" }}>
-          <img
-            src={anime.coverImage.large}
-            alt={anime.title.romaji}
-            style={{ width: "100%", borderRadius: 8 }}
-          />
-          <h3 style={{ marginTop: 8, fontSize: 14 }}>
-            {anime.title.english || anime.title.romaji}
-          </h3>
-        </div>
-      ))}
-    </div>
+    <section>
+      <h2 className="text-lg font-semibold mb-4">Trending Now</h2>
+  
+      {loading && <p>Loading…</p>}
+      {error && <p>{error}</p>}
+  
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {animeList.map((a) => (
+          <article
+            key={a.id}
+            className="group hover:-translate-y-1 transition-transform"
+          >
+            <img
+              src={a.coverImage.large}
+              alt={a.title.romaji}
+              className="w-full h-64 object-cover rounded-md shadow-lg"
+            />
+            <h3 className="mt-2 text-sm leading-tight group-hover:text-blue-400">
+              {a.title.english || a.title.romaji}
+            </h3>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }

@@ -20,6 +20,9 @@ export default function Home() {
             </code>
             .
           </li>
+          <div className="bg-red-500 text-white p-4 rounded-md">
+            Tailwind is working!
+          </div>
           <li className="tracking-[-.01em]">
             Save and see your changes instantly.
           </li>
