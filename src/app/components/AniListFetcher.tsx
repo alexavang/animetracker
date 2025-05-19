@@ -67,15 +67,17 @@ export default function AniListFetcher() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
       {animeList.map((anime) => (
-        <div key={anime.id} style={{ marginBottom: "20px" }}>
-          <h2>{anime.title.english || anime.title.romaji}</h2>
+        <div key={anime.id} style={{ width: 200, textAlign: "center" }}>
           <img
             src={anime.coverImage.large}
             alt={anime.title.romaji}
-            style={{ maxWidth: "200px" }}
+            style={{ width: "100%", borderRadius: 8 }}
           />
+          <h3 style={{ marginTop: 8, fontSize: 14 }}>
+            {anime.title.english || anime.title.romaji}
+          </h3>
         </div>
       ))}
     </div>
