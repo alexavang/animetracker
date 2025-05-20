@@ -82,12 +82,12 @@ export default function MultiSelectDropdown({
           <div className="px-3 py-2 text-sm font-semibold text-white/60 uppercase">
             {label}
           </div>
-          <div className="border-b border-white/10" />
+          <div className="border-b border-white/10 mx-3" />
           {options.map((opt) => (
             <button
               key={opt}
               onClick={() => toggle(opt)}
-              className="w-full px-3 py-2 text-left flex justify-between hover:bg-[#1f2a44]"
+              className="w-full pl-6 pr-3 py-2 text-left flex justify-between hover:bg-[#1f2a44]"
             >
               <span className="truncate">{opt}</span>
               {selected.includes(opt) && (
