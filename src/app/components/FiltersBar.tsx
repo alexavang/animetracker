@@ -1,7 +1,8 @@
+// src/app/components/FiltersBar.tsx
 "use client";
 
 import { useState } from "react";
-import { TagIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { TagIcon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import MultiSelectDropdown from "./MultiSelectDropdown";
 import SingleSelectDropdown from "./SingleSelectDropdown";
 
@@ -96,13 +97,16 @@ export default function FiltersBar({
         {/* Search */}
         <div className="flex flex-col">
           <span className="mb-1 text-sm text-white/60">Search</span>
-          <input
-            type="text"
-            placeholder="Search"
-            className="bg-[#152238] placeholder-white/50 text-white px-3 py-2 rounded-md min-w-[200px]"
-            value={f.search}
-            onChange={(e) => update("search", e.target.value)}
-          />
+          <div className="relative">
+            <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/50" />
+            <input
+              type="text"
+              value={f.search}
+              onChange={(e) => update("search", e.target.value)}
+              className="bg-[#152238] text-white px-3 py-2 rounded-md min-w-[200px] pl-10 placeholder-transparent focus:outline-none"
+              placeholder="Search"
+            />
+          </div>
         </div>
 
         {/* Genres */}
