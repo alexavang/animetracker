@@ -99,9 +99,8 @@ export default function FiltersBar({
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Year</span>
         <SingleSelectDropdown
-          label="Year"
           placeholder="Any"
-          options={YEARS}
+          options={YEARS.filter((y) => y !== "Any")}
           value={f.year}
           onChange={(y) => update("year", y)}
         />
@@ -111,9 +110,8 @@ export default function FiltersBar({
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Season</span>
         <SingleSelectDropdown
-          label="Season"
           placeholder="Any"
-          options={SEASONS}
+          options={SEASONS.filter((s) => s !== "Any")}
           value={f.season}
           onChange={(s) => update("season", s)}
         />
@@ -123,9 +121,8 @@ export default function FiltersBar({
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Format</span>
         <SingleSelectDropdown
-          label="Format"
           placeholder="Any"
-          options={FORMATS}
+          options={FORMATS.filter((f) => f !== "Any")}
           value={f.format}
           onChange={(fmt) => update("format", fmt)}
         />
