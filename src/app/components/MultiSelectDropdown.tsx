@@ -47,6 +47,7 @@ export default function MultiSelectDropdown({
   function clearAll(e: React.MouseEvent) {
     e.stopPropagation();
     onChange([]);
+    setOpen(false);
   }
 
   let display = placeholder;
