@@ -80,9 +80,8 @@ export default function MultiSelectDropdown({
       {open && (
         <div className="absolute mt-1 w-48 bg-[#152238] rounded-md shadow-lg max-h-60 overflow-auto z-10">
           <div className="px-3 py-2 text-sm font-semibold text-white/60 uppercase">
-            {label}
+            {label} {/* Genre dropdown label*/}
           </div>
-          <div className="border-b border-white/10 mx-3" />
           {options.map((opt) => (
             <button
               key={opt}
