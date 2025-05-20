@@ -35,10 +35,7 @@ const GENRES = [
 ];
 const YEARS = [
   "Any",
-  ...Array.from(
-    { length: 40 },
-    (_, i) => String(new Date().getFullYear() - i)
-  ),
+  ...Array.from({ length: 40 }, (_, i) => String(new Date().getFullYear() - i)),
 ];
 const SEASONS = ["Any", "Winter", "Spring", "Summer", "Fall"];
 const FORMATS = [
@@ -90,6 +87,7 @@ export default function FiltersBar({
       <div className="flex-shrink-0 flex flex-col">
         <span className="mb-1 text-sm text-white/60">Genres</span>
         <MultiSelectDropdown
+          label="Genres"
           placeholder="Any"
           options={GENRES.filter((g) => g !== "Any")}
           selected={f.genres}
@@ -101,6 +99,7 @@ export default function FiltersBar({
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Year</span>
         <SingleSelectDropdown
+          label="Year"
           placeholder="Any"
           options={YEARS}
           value={f.year}
@@ -112,6 +111,7 @@ export default function FiltersBar({
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Season</span>
         <SingleSelectDropdown
+          label="Season"
           placeholder="Any"
           options={SEASONS}
           value={f.season}
@@ -123,6 +123,7 @@ export default function FiltersBar({
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Format</span>
         <SingleSelectDropdown
+          label="Format"
           placeholder="Any"
           options={FORMATS}
           value={f.format}
@@ -140,7 +141,12 @@ export default function FiltersBar({
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M3 12h18M3 20h18" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 4h18M3 12h18M3 20h18"
+          />
         </svg>
       </button>
     </div>

@@ -4,17 +4,19 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 type Props = {
+  label: string;
+  placeholder?: string;
   options: string[];
   value: string;
   onChange: (val: string) => void;
-  placeholder?: string;
 };
 
 export default function SingleSelectDropdown({
+  label,
+  placeholder = "Any",
   options,
   value,
   onChange,
-  placeholder = "Any",
 }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -44,7 +46,6 @@ export default function SingleSelectDropdown({
       {open && (
         <div className="absolute mt-1 w-40 bg-[#152238] rounded-md shadow-lg max-h-60 overflow-auto z-10">
           <div className="px-3 py-2 text-sm font-semibold text-white/60 uppercase">
-            {placeholder}
           </div>
           <div className="border-b border-white/10" />
           {options.map((opt) => (
