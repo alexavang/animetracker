@@ -74,7 +74,7 @@ export default function FiltersBar({
   function onSeasonChange(season: string) {
     let next: Filters;
     if (season === "Any") {
-      next = { ...f, season: "Any", year: "Any" };
+      next = { ...f, season: "Any" };
     } else {
       next = { ...f, season, year: currentYear };
     }

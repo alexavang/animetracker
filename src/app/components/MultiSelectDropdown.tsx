@@ -66,15 +66,15 @@ export default function MultiSelectDropdown({
         >
           {display}
         </span>
-        <div className="flex items-center gap-1">
-          {selected.length > 0 && (
-            <XMarkIcon
-              className="h-4 w-4 text-white/60 hover:text-white"
-              onClick={clearAll}
-            />
-          )}
+
+        {selected.length > 0 ? (
+          <XMarkIcon
+            className="h-4 w-4 text-white/60 hover:text-white"
+            onClick={clearAll}
+          />
+        ) : (
           <ChevronDownIcon className="h-4 w-4 text-white/60" />
-        </div>
+        )}
       </button>
 
       {open && (
