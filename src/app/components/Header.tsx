@@ -18,7 +18,6 @@ export default function Header() {
     { href: "/forum", label: "Forum" },
   ];
 
-  // Toggle on Ctrl+S and close on Escape
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.key.toLowerCase() === "s") {
@@ -29,7 +28,6 @@ export default function Header() {
         setSearchOpen(false);
       }
     };
-    // Use capture phase so we intercept before browser Save dialog
     window.addEventListener("keydown", handler, true);
     return () => window.removeEventListener("keydown", handler, true);
   }, []);
@@ -37,7 +35,6 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 bg-[#0f1119] border-b border-white/10 z-50">
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 h-14">
-        {/* Logo + Nav */}
         <div className="flex items-center space-x-8">
           <Link href="/" className="flex-shrink-0">
             <img src="/logo.svg" alt="Logo" className="h-6" />
@@ -46,14 +43,12 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="uppercase text-sm text-white hover:text-white/80"
+              className="text-sm text-white hover:text-white/80"
             >
               {item.label}
             </Link>
           ))}
         </div>
-
-        {/* Quick-Search Trigger */}
         <button
           onClick={() => setSearchOpen(true)}
           className="p-2 rounded-md hover:bg-white/10"
@@ -62,8 +57,6 @@ export default function Header() {
           <MagnifyingGlassIcon className="h-5 w-5 text-white/60 hover:text-white" />
         </button>
       </div>
-
-      {/* QuickSearch Overlay */}
       {searchOpen && <QuickSearch onClose={() => setSearchOpen(false)} />}
     </header>
   );
