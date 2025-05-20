@@ -150,7 +150,7 @@ export default function FiltersBar({
           />
         </div>
 
-        {/* Optional filter icon */}
+        {/* Filter icon */}
         <button className="bg-[#152238] text-white p-2 rounded-md">
           <svg
             xmlns="http://www.w3.org/2000/svg"
