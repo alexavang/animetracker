@@ -13,7 +13,7 @@ const GRID_QUERY = gql`
     $seasonYear: Int
     $format: MediaFormat
   ) {
-    Page(perPage: 20) {
+    Page(perPage: 5) {
       media(
         search: $search
         type: ANIME
