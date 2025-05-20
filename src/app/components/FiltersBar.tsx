@@ -1,6 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import MultiSelectDropdown from "./MultiSelectDropdown";
+import SingleSelectDropdown from "./SingleSelectDropdown";
 
 export type Filters = {
   search: string;
@@ -33,7 +35,10 @@ const GENRES = [
 ];
 const YEARS = [
   "Any",
-  ...Array.from({ length: 40 }, (_, i) => String(new Date().getFullYear() - i)),
+  ...Array.from(
+    { length: 40 },
+    (_, i) => String(new Date().getFullYear() - i)
+  ),
 ];
 const SEASONS = ["Any", "Winter", "Spring", "Summer", "Fall"];
 const FORMATS = [
@@ -66,8 +71,6 @@ export default function FiltersBar({
     onChange(next);
   }
 
-  const selectClass = "bg-[#152238] text-white px-3 py-2 rounded-md";
-
   return (
     <div className="flex flex-wrap gap-4 mb-6">
       {/* Search */}
@@ -75,71 +78,71 @@ export default function FiltersBar({
         <span className="mb-1 text-sm text-white/60">Search</span>
         <input
           type="text"
-          placeholder=""
-          className="bg-[#152238] placeholder-white/50 text-white px-3 py-2 rounded-md flex-1 min-w-[200px]"
+          placeholder="Search"
+          className="bg-[#152238] placeholder-white/50 text-white px-3 py-2 rounded-md
+                     flex-1 min-w-[200px]"
           value={f.search}
           onChange={(e) => update("search", e.target.value)}
         />
       </div>
 
-      {/* Genre */}
-      <div className="flex flex-col">
+      {/* Genres */}
+      <div className="flex-shrink-0 flex flex-col">
         <span className="mb-1 text-sm text-white/60">Genres</span>
         <MultiSelectDropdown
           placeholder="Any"
           options={GENRES.filter((g) => g !== "Any")}
           selected={f.genres}
-          onChange={(genres) => update("genres", genres)}
+          onChange={(gs) => update("genres", gs)}
         />
       </div>
 
       {/* Year */}
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Year</span>
-        <select
-          className={selectClass}
+        <SingleSelectDropdown
+          placeholder="Any"
+          options={YEARS}
           value={f.year}
-          onChange={(e) => update("year", e.target.value)}
-        >
-          {YEARS.map((y) => (
-            <option key={y} value={y}>
-              {y}
-            </option>
-          ))}
-        </select>
+          onChange={(y) => update("year", y)}
+        />
       </div>
 
       {/* Season */}
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Season</span>
-        <select
-          className={selectClass}
+        <SingleSelectDropdown
+          placeholder="Any"
+          options={SEASONS}
           value={f.season}
-          onChange={(e) => update("season", e.target.value)}
-        >
-          {SEASONS.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
+          onChange={(s) => update("season", s)}
+        />
       </div>
 
       {/* Format */}
       <div className="flex flex-col">
         <span className="mb-1 text-sm text-white/60">Format</span>
-        <select
-          className={selectClass}
+        <SingleSelectDropdown
+          placeholder="Any"
+          options={FORMATS}
           value={f.format}
-          onChange={(e) => update("format", e.target.value)}
-        >
-          {FORMATS.map((fmt) => (
-            <option key={fmt} value={fmt}>
-              {fmt}
-            </option>
-          ))}
-        </select>
+          onChange={(fmt) => update("format", fmt)}
+        />
       </div>
+
+      {/* (optional) filter icon button if you had one */}
+      <button className="bg-[#152238] text-white p-2 rounded-md">
+        {/* your svg icon */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-white/60"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M3 12h18M3 20h18" />
+        </svg>
+      </button>
     </div>
   );
 }

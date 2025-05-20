@@ -48,12 +48,31 @@ export default function AnimeGrid({ filters }: { filters: Filters }) {
 
   useEffect(() => {
     setLoading(true);
+
+    const formatMap: Record<string, any> = {
+      "TV Show": "TV",
+      "TV Short": "TV_SHORT",
+      Movie: "MOVIE",
+      Special: "SPECIAL",
+      OVA: "OVA",
+      ONA: "ONA",
+      Music: "MUSIC",
+    };
+
+    const seasonVar =
+      filters.season !== "Any"
+        ? (filters.season.toUpperCase() as any)
+        : undefined;
+
+    const formatVar =
+      filters.format !== "Any" ? formatMap[filters.format] : undefined;
+
     request<{ Page: { media: Anime[] } }>(endpoint, GRID_QUERY, {
       search: filters.search || undefined,
       genres: filters.genres.length > 0 ? filters.genres : undefined,
-      season: filters.season !== "Any" ? filters.season : undefined,
+      season: seasonVar,
       seasonYear: filters.year !== "Any" ? +filters.year : undefined,
-      format: filters.format !== "Any" ? (filters.format as any) : undefined,
+      format: formatVar,
     }).then((data) => {
       setList(data.Page.media);
       setLoading(false);
