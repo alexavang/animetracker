@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import {
   ChevronDownIcon,
@@ -61,7 +60,6 @@ export default function SingleSelectDropdown({
 
       {open && (
         <div className="absolute mt-1 w-40 bg-[#152238] rounded-md shadow-lg max-h-60 overflow-auto z-10">
-          {/* options */}
           {options.map((opt) => (
             <button
               key={opt}

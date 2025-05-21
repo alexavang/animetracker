@@ -1,6 +1,4 @@
-// src/app/components/QuickSearch.tsx
 "use client";
-
 import { useState, useEffect } from "react";
 import { request, gql } from "graphql-request";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";

@@ -1,5 +1,4 @@
 "use client";
-
 import { request, gql } from "graphql-request";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";

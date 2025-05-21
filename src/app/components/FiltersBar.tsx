@@ -1,8 +1,10 @@
-// src/app/components/FiltersBar.tsx
 "use client";
-
 import { useState } from "react";
-import { TagIcon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import {
+  TagIcon,
+  XMarkIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/solid";
 import MultiSelectDropdown from "./MultiSelectDropdown";
 import SingleSelectDropdown from "./SingleSelectDropdown";
 
@@ -92,7 +94,6 @@ export default function FiltersBar({
 
   return (
     <div className="flex flex-col gap-4 mb-6">
-      {/* ——— 1) Filters row ——— */}
       <div className="flex flex-wrap gap-4">
         {/* Search */}
         <div className="flex flex-col">
@@ -173,7 +174,6 @@ export default function FiltersBar({
         </button>
       </div>
 
-      {/* ——— 2) “Tag” row: only when any filter is active ——— */}
       {anyActive && (
         <div className="flex items-center gap-2">
           <TagIcon className="w-5 h-5 text-white/50" />
