@@ -9,11 +9,9 @@ export default function Header() {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/profile", label: "Profile" },
     { href: "/anime-list", label: "Anime List" },
     { href: "/manga-list", label: "Manga List" },
     { href: "/search/anime", label: "Browse" },
-    { href: "/forum", label: "Forum" },
   ];
 
   useEffect(() => {
