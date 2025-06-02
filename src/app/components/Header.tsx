@@ -31,30 +31,41 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 bg-[#0f1119] border-b border-white/10 z-50">
-      <div className="mx-auto max-w-7xl flex items-center justify-between px-6 h-14">
-        <div className="flex items-center space-x-8">
-          <Link href="/" className="flex-shrink-0">
+    <header className="fixed inset-x-0 top-0 z-50 bg-[#0f1119] border-b border-white/10">
+      <div className="mx-auto max-w-7xl flex items-center px-6 h-14">
+        {/* ─── Left zone: Logo ─── */}
+        <div className="flex-shrink-0">
+          <Link href="/">
             <img src="/logo.svg" alt="Logo" className="h-6" />
           </Link>
+        </div>
+
+        {/* ─── Center zone: Nav links, forced to center ─── */}
+        <nav className="flex flex-1 justify-center space-x-8">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-white hover:text-white/80"
+              className="text-sm text-white/80 hover:text-white transition-colors"
             >
               {item.label}
             </Link>
           ))}
+        </nav>
+
+        {/* ─── Right zone: Search button ─── */}
+        <div>
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="p-2 rounded-md hover:bg-white/10"
+            aria-label="Open quick search"
+          >
+            <MagnifyingGlassIcon className="h-5 w-5 text-white/60 hover:text-white" />
+          </button>
         </div>
-        <button
-          onClick={() => setSearchOpen(true)}
-          className="p-2 rounded-md hover:bg-white/10"
-          aria-label="Open quick search"
-        >
-          <MagnifyingGlassIcon className="h-5 w-5 text-white/60 hover:text-white" />
-        </button>
       </div>
+
+      {/* ─── QuickSearch Overlay (covers entire viewport, dims background) ─── */}
       {searchOpen && <QuickSearch onClose={() => setSearchOpen(false)} />}
     </header>
   );
