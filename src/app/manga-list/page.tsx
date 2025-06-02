@@ -16,7 +16,7 @@ const GET_TOP_MANGA = gql`
           english
         }
         coverImage {
-          medium
+          large
         }
         siteUrl
       }
@@ -31,7 +31,7 @@ type Manga = {
     english: string | null;
   };
   coverImage: {
-    medium: string;
+    large: string;
   };
   siteUrl: string;
 };
@@ -67,7 +67,7 @@ export default function MangaListPage() {
         {mangaList.map((m) => (
           <Link key={m.id} href={m.siteUrl} className="group">
             <img
-              src={m.coverImage.medium}
+              src={m.coverImage.large}
               alt={m.title.romaji}
               className="w-full h-auto rounded-lg shadow-md object-cover group-hover:shadow-lg transition-shadow"
             />

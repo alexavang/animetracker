@@ -16,7 +16,7 @@ const GET_TOP_ANIME = gql`
           english
         }
         coverImage {
-          medium
+          large
         }
         siteUrl
       }
@@ -31,7 +31,7 @@ type Anime = {
     english: string | null;
   };
   coverImage: {
-    medium: string;
+    large: string;
   };
   siteUrl: string;
 };
@@ -62,7 +62,7 @@ export default function AnimeListPage() {
         {animeList.map((a) => (
           <Link key={a.id} href={a.siteUrl} className="group">
             <img
-              src={a.coverImage.medium}
+              src={a.coverImage.large}
               alt={a.title.romaji}
               className="w-full h-auto rounded-lg shadow-md object-cover group-hover:shadow-lg transition-shadow"
             />
